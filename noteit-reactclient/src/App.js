@@ -80,7 +80,7 @@ function App() {
     return (
       <div className='table-responsive mt-5'>
         <p className='mb-1'><small>Database items</small></p>
-        <table className='table table-bordered border-dark'>
+        <table className='table table-hover border-dark table-sm align-middle'>
           <thead>
             <tr>
               <th scope="col">NoteId (PK)</th>
@@ -89,7 +89,7 @@ function App() {
               <th scope="col">CRUD Operations</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className='table-group-divider'>
             {/* map a row for each fetched item */}
             {notes.map((note) => (
               <tr key={note.NoteId}>
@@ -97,7 +97,7 @@ function App() {
                 <td>{note.title}</td>
                 <td>{note.content}</td>
                 <td>
-                  <button onClick={() => setNoteIdBeingUpdated(note)} className='btn btn-primary btn-lg mx-3 my-3'>Update</button>
+                  <button onClick={() => setNoteIdBeingUpdated(note)} className='btn btn-primary btn-lg'>Update</button>
                   {/* [demo] adding a user query for deletion dialog */}
                   <button onClick={() => { if(window.confirm(`Are you sure you want to delete the item "${note.title}"?`)) deleteNote(note.noteId)}} className='btn btn-outline-secondary btn-lg'>Delete</button>
                 </td>

@@ -4,10 +4,9 @@ on:
   push:
     branches:
       - master
-    # watch changes in the files og those folders:
     paths:
-      -'noteit-reactclient/**'
-      -'.github/workflows/**'
+      - 'noteit-reactclient/**'
+      - '.github/workflows/**'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:

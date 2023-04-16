@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
             builder
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .WithOrigins("http://localhost:3000", "https://appname.azurestaticapps.net/");
+            .WithOrigins("http://localhost:3000", "https://black-sky-0b2e82303.3.azurestaticapps.net/");
         });
 });
 

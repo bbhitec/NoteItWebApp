@@ -2,7 +2,7 @@ import React, { useState } from 'react';  // [demo] make sure react is imported
 import Constants from './utilities/Constants';
 import NoteCreateForm from './components/NoteCreateForm';
 import NoteUpdateForm from './components/NoteUpdateForm';
-import logo from './logo.webp';
+import logo from './logo.svg';
 
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
         <div className="col d-flex flex-column justify-content-center align-items-center">
           {(showingCreateNewNoteForm === false && noteIdBeingUpdated === null) && (
             <div>
-              <img src={logo} className="mx-auto d-block" alt="NoteIt Logo"/>
+              <img src={logo} className="mx-auto d-block" alt="NoteIt Logo" width="200" height="200"/>
               <h1 className='display-1 text-center'>NoteIt App</h1>
               <h4 className='text-center'>ASP.NET Core app</h4>
               <div className='mt-4'>

@@ -97,9 +97,9 @@ function App() {
                 <td>{note.title}</td>
                 <td>{note.content}</td>
                 <td>
-                  <button onClick={() => setNoteIdBeingUpdated(note)} className='btn btn-primary btn-lg'>Update</button>
+                  <button onClick={() => setNoteIdBeingUpdated(note)} className='btn btn-primary mt-2'>Update</button>
                   {/* [demo] adding a user query for deletion dialog */}
-                  <button onClick={() => { if(window.confirm(`Are you sure you want to delete the item "${note.title}"?`)) deleteNote(note.noteId)}} className='btn btn-outline-secondary btn-lg'>Delete</button>
+                  <button onClick={() => { if(window.confirm(`Are you sure you want to delete the item "${note.title}"?`)) deleteNote(note.noteId)}} className='btn btn-outline-secondary mt-2'>Delete</button>
                 </td>
               </tr>
             ))}

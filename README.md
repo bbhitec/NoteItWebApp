@@ -26,6 +26,15 @@ This is a server app written in C# under ASP.NET.
 
 
 <br><br>
+
 ## Usage/How to run
 Client: built as a React app. [Live Client](https://black-sky-0b2e82303.3.azurestaticapps.net/)<br>
 Server: Run with Visual Studio Community edition and install required packages. [Live Server](https://noteit-aspnetserver.azurewebsites.net/index.html)
+
+
+<br>
+
+## Credits
+Used various tutorials, specifically:
+- By [Ruben Heeren](https://youtu.be/I9QUsAhbKhg)
+- By [Tim Corey](https://youtu.be/q-ZuYF_O-gk)

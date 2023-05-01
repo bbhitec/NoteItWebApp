@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+noteit-aspnetserver/Data/AppDB.db
+noteit-aspnetserver/Data/AppDB.db-shm
+noteit-aspnetserver/Data/AppDB.db-wal

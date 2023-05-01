@@ -14,6 +14,8 @@ This is a server app written in C# under ASP.NET.
 - Swagger configuration and API testing
 - Package control with NuGet
 - GitHub actions polish
+- .http files hot API testing
+- Bootstrap Front End development: sections and cards
 
 ## Skills stack
 ![](https://shields.io/badge/-asp.net-purple?logo=dotnet&style=plastic)
@@ -23,7 +25,15 @@ This is a server app written in C# under ASP.NET.
 ![](https://shields.io/badge/-sqlite-blue?logo=sqlite&style=plastic)
 ![](https://shields.io/badge/-bootstrap-grey?logo=bootstrap&style=plastic)
 
+<br>
 
+## Next/WIP
+- [] Sexy dark mode
+- [] Dark mode toggle?
+- [] User space
+- [] Add demo mode
+- [] Placeholder/ghost cards on loading
+- [] In-place note creation and edit
 
 <br><br>
 

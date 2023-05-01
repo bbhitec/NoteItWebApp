@@ -1,0 +1,13 @@
+
+# [demo] http files are an easy way to test API's realtime
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+# [demo] we can parametrize paths
+@NoteId = 7
+
+GET https://noteit-aspnetserver.azurewebsites.net/get-all-notes/
+
+
+### [demo] commands separator
+
+GET https://noteit-aspnetserver.azurewebsites.net/get-note-by-id/{{NoteId}}

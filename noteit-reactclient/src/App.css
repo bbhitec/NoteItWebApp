@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+
+
+* {
+    /* border: solid red; */
+}
+
+.app-header{
+    position: static;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    /* z-index: 1000; */
+    display: flex;
+    padding-right: 1rem;
+    background-color: white;
+}
+
+.noteit__title {
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 3rem;
+}
+
+.noteit__logo {
+    filter: invert(90%)
+}
+
+.noteit__cred {
+    flex: 1 0 auto;
+}
+
+.noteit__footer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+}
+
+h5 {
+    font-size: 0.7rem;
+    /* font-family: 'Alfa Slab One', cursive; */
+}
+
+/* :root {
+    --bs-blue: #4377fb;
+    --bs-body-font-family: 'Space Mono', monospace;
+    --bs-secondary: #4377fb;
+    --bs-body-font-size: 0.8rem;
+}
+
+
+
+
+.noteit__header-title {
+    text-align: end;
+} */

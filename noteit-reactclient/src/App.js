@@ -2,7 +2,14 @@ import React, { useState } from 'react';  // [demo] make sure react is imported
 import Constants from './utilities/Constants';
 import NoteCreateForm from './components/NoteCreateForm';
 import NoteUpdateForm from './components/NoteUpdateForm';
-import logo from './logo.svg';
+import logo from './noteit_logo.svg';
+// import './styles.css'  // imported theme
+import './App.css'
+import Alert from './components/Alert';
+import Card from './components/Card';
+import { BsPersonFill } from "react-icons/bs"
+import { BiRefresh, BiPlus, BiPencil } from "react-icons/bi"
+
 
 
 function App() {
@@ -50,31 +57,107 @@ function App() {
   }
 
   return (
-    <div className='container'>
-      <div className='row min-vh-100'>
-        <div className="col d-flex flex-column justify-content-center align-items-center">
-          {(showingCreateNewNoteForm === false && noteIdBeingUpdated === null) && (
-            <div>
-              <img src={logo} className="mx-auto d-block" alt="NoteIt Logo" width="200" height="200"/>
-              <h1 className='display-1 text-center'>NoteIt App</h1>
-              <h4 className='text-center'>ASP.NET Core app</h4>
-              <div className='mt-4'>
-                <button onClick={getNotes} className='btn btn-primary btn-lg w-100'>Fetch Notes from Server</button>
-                <button onClick={() => setShowingCreateNewNoteForm(true)} className='btn btn-secondary btn-lg w-100 mt-2'>New Note</button>
-              </div>
-            </div>
-          )}
+    <>
+      {/* HEADER CONTAINER */}
+      <div className='app-header bg-dark text-light'>
+        <div className="d-flex my-4 px-1 align-items-center noteit__cred">
+          <img src={logo} className="mx-3 noteit__logo" alt="NoteIt Logo" width="50" />
+          <h1 className='noteit__title my-0 align-items-center' >NoteIt App</h1>
+          {/* <h4 className=''>ASP.NET Core app</h4> */}
+        </div>
+        <div className='noteit__menu d-flex align-self-center'>
+          <button onClick={() => setShowingCreateNewNoteForm(true)} className='btn btn-primary btn-sm me-2'>
+            <BiPlus size='2rem' />
+          </button>
+          <button onClick={getNotes} className='btn btn-secondary btn-sm me-1' aria-label='Menu'>
+            <BiRefresh size='2rem' />
+          </button>
+          {/* [wip] user area, tutorial and tech stack demo area */}
+        </div>
 
-          {/* [demo] calling react component function, if has items, or no other form is active*/}
-          {(notes.length > 0 && showingCreateNewNoteForm === false && noteIdBeingUpdated === null) && renderItemsTable()}
+        {/* [wip] fix dropdown? add search? */}
+        {/* <ul className='app-nav'>
+          <li className='app-search'></li>
+          <li className='dropdown'>
+            <a className='app-nav__item' href="#" data-toggle='dropdown' aria-label='Menu'>
+              <BsPersonFill size='3rem' />
+            </a>
+            <ul className='dropdown-menu settings-menu dropdown-menu-right' data-bs-theme="dark">
+              <li><a className='dropdown-item' href=''>Item</a></li>
+              <li><a className='dropdown-item' href=''>Item</a></li>
+              <li><a className='dropdown-item' href=''>Item</a></li>
+              <li><a className='dropdown-item' href=''>Item</a></li>
+            </ul>
+          </li>
+        </ul> */}
+        {/* <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px" data-bs-theme="light">
+          <li><a class="dropdown-item rounded-2 active" href="#">Action</a></li>
+          <li><a class="dropdown-item rounded-2" href="#">Another action</a></li>
+          <li><a class="dropdown-item rounded-2" href="#">Something else here</a></li>
+          <li><a class="dropdown-item rounded-2" href="#">Separated link</a></li>
+        </ul> */}
 
-          {showingCreateNewNoteForm && <NoteCreateForm onNoteCreated={onNoteCreated} />}
+      </div>
 
-          {noteIdBeingUpdated !== null && <NoteUpdateForm note={noteIdBeingUpdated} onNoteUpdated={onNoteUpdated} />}
+
+      <div className='container-fluid row-2  bg-dark text-light' id='main-container'>
+        {/* MAIN WINDOW CONTAINER */}
+        <div className='row min-vh-100'>
+
+          {/* <div className="col d-flex flex-column justify-content-center align-items-center"> */}
+          <div className="col d-flex flex-column">
+
+            {/* [demo] calling react component function, if has items, or no other form is active*/}
+            {/* {(notes.length > 0 && showingCreateNewNoteForm === false && noteIdBeingUpdated === null) && renderItemsTable()} */}
+            {(notes.length > 0 && showingCreateNewNoteForm === false && noteIdBeingUpdated === null) && renderItemsCards()}
+
+            {showingCreateNewNoteForm && <NoteCreateForm onNoteCreated={onNoteCreated} />}
+
+            {noteIdBeingUpdated !== null && <NoteUpdateForm note={noteIdBeingUpdated} onNoteUpdated={onNoteUpdated} />}
+          </div>
+
+          {/* SIDE PANEL CONTAINER */}
+          {/* <div className="col-3">
+
+            Thats a side panel
+            <button onClick={getNotes} className='btn btn-primary btn-lg'>Re-fetch Notes from Server</button>
+            <button onClick={() => setShowingCreateNewNoteForm(true)} className='btn btn-secondary btn-lg'>New Note</button>
+          </div> */}
         </div>
       </div>
-    </div>
+
+
+      {/* FOOTER CONTAINER */}
+      <div className='noteit__footer my-0 py-0 bg-dark text-light'>
+        <p className='d-flex justify-content-center small'>
+          Created with ☕ by  <a href='https://www.vnikolin.com' className='mx-1'> [vnikolin]</a>
+        </p>
+      </div>
+
+
+    </>
   );
+
+
+  // map notes as cards
+  // [wip] make responsive on mobile!
+  function renderItemsCards() {
+    //d-flex
+    return (
+      <div className="p-1 d-flex row" id='cards_grid'>
+        {notes.map((note) => (
+          <Card title={note.title} content={note.content}
+            onUpdate={() => setNoteIdBeingUpdated(note)}
+            onDelete={() => { if (window.confirm(`Are you sure you want to delete the item "${note.title}"?`)) deleteNote(note.noteId) }}
+          />
+        ))}
+        {/* <Alert onClick={() => console.log("Alert Clicked!")} onClose={() => null}>
+          This is a ReactNode <div>children prop</div>
+        </Alert> */}
+      </div>
+
+    )
+  }
 
   function renderItemsTable() {
     return (
@@ -97,9 +180,9 @@ function App() {
                 <td>{note.title}</td>
                 <td>{note.content}</td>
                 <td>
-                  <button onClick={() => setNoteIdBeingUpdated(note)} className='btn btn-primary mt-2'>Update</button>
+                  <button onClick={() => setNoteIdBeingUpdated(note)} className='btn btn-sm btn-primary'>Update</button>
                   {/* [demo] adding a user query for deletion dialog */}
-                  <button onClick={() => { if(window.confirm(`Are you sure you want to delete the item "${note.title}"?`)) deleteNote(note.noteId)}} className='btn btn-outline-secondary mt-2'>Delete</button>
+                  <button onClick={() => { if (window.confirm(`Are you sure you want to delete the item "${note.title}"?`)) deleteNote(note.noteId) }} className='btn btn-sm btn-outline-secondary m-1'>Delete</button>
                 </td>
               </tr>
             ))}
@@ -171,7 +254,7 @@ function App() {
 
     // update if found
     if (index !== -1) {
-      notesCopy.splice(index,1);  // [demo] remove element at index
+      notesCopy.splice(index, 1);  // [demo] remove element at index
     }
 
     setNotes(notesCopy);  // refresh notes list

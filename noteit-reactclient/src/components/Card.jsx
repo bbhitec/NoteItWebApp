@@ -2,6 +2,7 @@ import React from 'react'
 import { BiEdit, BiXCircle } from "react-icons/bi"
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import './Card.css'
 
 
 function Card({ title, content, onUpdate, onDelete }) {

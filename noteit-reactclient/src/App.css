@@ -44,6 +44,7 @@
     bottom: 0;
     width: 100%;
     background-color: white;
+    font-family: 'Space Mono', monospace;
 }
 
 h5 {
@@ -56,7 +57,8 @@ h5 {
     --bs-blue: #4377fb;
     background-color: var(--bs-dark);
     /* --bs-dark-rgb: #4377fb; */
-    --bs-body-font-family: 'Space Mono', monospace;
+    /* --bs-body-font-family: 'Space Mono', monospace; */
+    
     /* --bs-secondary: #4377fb; */
     --bs-body-font-size: 0.8rem;
 }
@@ -76,7 +78,9 @@ root {
 
 .noteit__form
 .noteit__card {
-    font-family:'Space Mono', monospace;
+    /* font-family:'Space Mono', monospace; */
+    font-family:'Alfa Slab One', cursive;
+    
 }
 
 

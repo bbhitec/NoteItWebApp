@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Constants from '../utilities/Constants';
+import './Form.css'
 
 
 // functional component for a new noteform

@@ -2,13 +2,14 @@ import React, { useState } from 'react';  // [demo] make sure react is imported
 import Constants from './utilities/Constants';
 import NoteCreateForm from './components/NoteCreateForm';
 import NoteUpdateForm from './components/NoteUpdateForm';
+import { BiRefresh, BiPlus, BiXCircle } from "react-icons/bi"
 import logo from './noteit_logo.svg';
 // import './styles.css'  // imported theme
-import './App.css'
+import { Tooltip } from "react-tooltip";
 import Alert from './components/Alert';
-import Card from './components/Card';
-import { BsPersonFill } from "react-icons/bs"
-import { BiRefresh, BiPlus, BiPencil } from "react-icons/bi"
+import Footer from './components/Footer';
+import CardsGrid from './components/CardsGrid';
+import './App.css'
 
 
 
@@ -59,20 +60,21 @@ function App() {
   return (
     <>
       {/* HEADER CONTAINER */}
-      <div className='app-header bg-dark text-light'>
+      <div className='noteit__header sticky-top bg-dark text-light'>
         <div className="d-flex my-4 px-1 align-items-center noteit__cred">
           <img src={logo} className="mx-3 noteit__logo" alt="NoteIt Logo" width="50" />
-          <h1 className='noteit__title my-0 align-items-center' >NoteIt App</h1>
+          <h1 className='noteit__title my-0 align-items-center' >NoteIt</h1>
           {/* <h4 className=''>ASP.NET Core app</h4> */}
         </div>
         <div className='noteit__menu d-flex align-self-center'>
-          <button onClick={() => setShowingCreateNewNoteForm(true)} className='btn btn-primary btn-sm me-2'>
+          <button onClick={() => setShowingCreateNewNoteForm(true)} className='btn btn-primary btn-sm me-2' data-tooltip-content="New Note" data-tooltip-id="menu-tooltip">
             <BiPlus size='2rem' />
           </button>
-          <button onClick={getNotes} className='btn btn-secondary btn-sm me-1' aria-label='Menu'>
+          <button onClick={getNotes} className='btn btn-secondary btn-sm me-1' aria-label='Menu' data-tooltip-content="Reload Notes" data-tooltip-id="menu-tooltip">
             <BiRefresh size='2rem' />
           </button>
           {/* [wip] user area, tutorial and tech stack demo area */}
+          <Tooltip id="menu-tooltip" place="bottom" variant="info" />
         </div>
 
         {/* [wip] fix dropdown? add search? */}
@@ -100,65 +102,45 @@ function App() {
       </div>
 
 
-      <div className='container-fluid row-2  bg-dark text-light' id='main-container'>
-        {/* MAIN WINDOW CONTAINER */}
-        <div className='row min-vh-100'>
+      {/* MAIN WINDOW CONTAINER */}
+      {/* <div className='container-fluid vh-100 row bg-dark text-light'> */}
+      {/* <div className='col-xl-8 mx-auto vh-100 bg-dark text-light' id='main-container'> */}
+      <div className='bg-dark text-light' id='main-container'>
+        {/* [demo] calling react component function, if has items, or no other form is active*/}
+        {/* {(notes.length > 0 && showingCreateNewNoteForm === false && noteIdBeingUpdated === null) && renderItemsTable()} */}
+        {(notes.length > 0 && showingCreateNewNoteForm === false && noteIdBeingUpdated === null) && renderItemsCards()}
 
-          {/* <div className="col d-flex flex-column justify-content-center align-items-center"> */}
-          <div className="col d-flex flex-column">
+        {/* render create/update note forms in this same port */}
+        {showingCreateNewNoteForm && <NoteCreateForm onNoteCreated={onNoteCreated} />}
+        {noteIdBeingUpdated !== null && <NoteUpdateForm note={noteIdBeingUpdated} onNoteUpdated={onNoteUpdated} />}
 
-            {/* [demo] calling react component function, if has items, or no other form is active*/}
-            {/* {(notes.length > 0 && showingCreateNewNoteForm === false && noteIdBeingUpdated === null) && renderItemsTable()} */}
-            {(notes.length > 0 && showingCreateNewNoteForm === false && noteIdBeingUpdated === null) && renderItemsCards()}
-
-            {showingCreateNewNoteForm && <NoteCreateForm onNoteCreated={onNoteCreated} />}
-
-            {noteIdBeingUpdated !== null && <NoteUpdateForm note={noteIdBeingUpdated} onNoteUpdated={onNoteUpdated} />}
-          </div>
-
-          {/* SIDE PANEL CONTAINER */}
-          {/* <div className="col-3">
-
-            Thats a side panel
-            <button onClick={getNotes} className='btn btn-primary btn-lg'>Re-fetch Notes from Server</button>
-            <button onClick={() => setShowingCreateNewNoteForm(true)} className='btn btn-secondary btn-lg'>New Note</button>
-          </div> */}
-        </div>
+        {/* </div> */}
+        {/* </div> */}
       </div>
-
 
       {/* FOOTER CONTAINER */}
-      <div className='noteit__footer my-0 py-0 bg-dark text-light'>
-        <p className='d-flex justify-content-center small'>
-          Created with ☕ by  <a href='https://www.vnikolin.com' className='mx-1'> [vnikolin]</a>
-        </p>
-      </div>
-
-
+      <Footer />
     </>
   );
 
 
   // map notes as cards
-  // [wip] make responsive on mobile!
   function renderItemsCards() {
-    //d-flex
     return (
-      <div className="p-1 d-flex row" id='cards_grid'>
-        {notes.map((note) => (
-          <Card title={note.title} content={note.content}
-            onUpdate={() => setNoteIdBeingUpdated(note)}
-            onDelete={() => { if (window.confirm(`Are you sure you want to delete the item "${note.title}"?`)) deleteNote(note.noteId) }}
-          />
-        ))}
-        {/* <Alert onClick={() => console.log("Alert Clicked!")} onClose={() => null}>
-          This is a ReactNode <div>children prop</div>
-        </Alert> */}
-      </div>
+      <>
+        <CardsGrid items={notes} setNoteIdBeingUpdated={setNoteIdBeingUpdated} deleteNote={deleteNote} />
+
+        <div className="d-flex row py-3">
+          <div onClick={() => setNotes([])} className='btn btn-secondary btn-sm col-2 my-2 mx-auto'>
+            <BiXCircle size='2rem' /> Clear Notes
+          </div>
+        </div>
+      </>
 
     )
   }
 
+  // initial notes rendering as a simple table
   function renderItemsTable() {
     return (
       <div className='table-responsive mt-5'>

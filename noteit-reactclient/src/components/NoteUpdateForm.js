@@ -60,8 +60,8 @@ export default function NoteUpdateForm(props) {
 
 
     return (
-        <form className='w-100 px-5'>
-            <h1 className='mt5'>Updating Note "{props.note.title}".</h1>
+        <form className='noteit__form w-100 px-5 pb-5'>
+            <h1 className='pt-5'>Updating Note "{props.note.title}".</h1>
 
             <div className='mt-5'>
                 <label className='h3 form-label'>Note Title</label>

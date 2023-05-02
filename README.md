@@ -29,8 +29,9 @@ This is a server app written in C# under ASP.NET.
 
 ## Next/WIP
 - [] Sexy dark mode
+- [] useEffect-preload notes on load
 - [] Dark mode toggle?
-- [] User space
+- [] User space authentication
 - [] Add demo mode
 - [] Placeholder/ghost cards on loading
 - [] In-place note creation and edit

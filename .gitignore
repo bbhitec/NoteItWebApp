@@ -364,3 +364,6 @@ FodyWeavers.xsd
 noteit-aspnetserver/Data/AppDB.db
 noteit-aspnetserver/Data/AppDB.db-shm
 noteit-aspnetserver/Data/AppDB.db-wal
+noteit-aspnetserver/Data/AppDB.db
+.gitignore
+noteit-aspnetserver/Data/AppDB.db-wal

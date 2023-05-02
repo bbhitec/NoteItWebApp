@@ -2,13 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 
 
-
 * {
     /* border: solid red; */
 }
 
-.app-header{
-    position: static;
+.noteit__header {
+    /* position: -webkit-sticky; */
     left: 0;
     right: 0;
     top: 0;
@@ -16,26 +15,30 @@
     /* z-index: 1000; */
     display: flex;
     padding-right: 1rem;
-    background-color: white;
+    /* background-color: white; */
+    /* background-color: var(--vn-blue); */
+
 }
 
 .noteit__title {
     font-family: 'Alfa Slab One', cursive;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--vn-blue);
     text-align: center;
     line-height: 3rem;
 }
 
 .noteit__logo {
-    filter: invert(90%)
+    filter: invert(90%);
+    fill: var(--vn-blue);
 }
 
 .noteit__cred {
     flex: 1 0 auto;
 }
 
-.noteit__footer{
-    position: fixed;
+.noteit__footer {
+    /* position: static; */
     left: 0;
     right: 0;
     bottom: 0;
@@ -48,16 +51,38 @@ h5 {
     /* font-family: 'Alfa Slab One', cursive; */
 }
 
-/* :root {
+:root {
+    --vn-blue: #4377fb;
     --bs-blue: #4377fb;
+    background-color: var(--bs-dark);
+    /* --bs-dark-rgb: #4377fb; */
     --bs-body-font-family: 'Space Mono', monospace;
-    --bs-secondary: #4377fb;
+    /* --bs-secondary: #4377fb; */
     --bs-body-font-size: 0.8rem;
 }
+
+root {
+    background-color: var(--bs-dark);
+
+}
+
+.card-body {
+    /* background-color: var(--vn-blue);; */
+}
+
+.noteit__container {
+    /* background-color: var(--vn-blue);; */
+}
+
+.noteit__form
+.noteit__card {
+    font-family:'Space Mono', monospace;
+}
+
 
 
 
 
 .noteit__header-title {
     text-align: end;
-} */
+}

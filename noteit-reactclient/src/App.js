@@ -1,4 +1,4 @@
-import React, { useState } from 'react';  // [demo] make sure react is imported
+import React, { useEffect, useState } from 'react';  // [demo] make sure react is imported
 import Constants from './utilities/Constants';
 import NoteCreateForm from './components/NoteCreateForm';
 import NoteUpdateForm from './components/NoteUpdateForm';
@@ -18,6 +18,9 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [showingCreateNewNoteForm, setShowingCreateNewNoteForm] = useState(false);  // new note form is hidden by default
   const [noteIdBeingUpdated, setNoteIdBeingUpdated] = useState(null);
+
+  // [demo] use this hook to load the motes on mount once (the empty array is for the items that with cause re-render)
+  useEffect((getNotes),[])
 
 
   // implementing the get function

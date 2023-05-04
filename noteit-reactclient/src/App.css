@@ -22,15 +22,17 @@
 
 .noteit__title {
     font-family: 'Alfa Slab One', cursive;
-    font-size: 1.8rem;
-    color: var(--vn-blue);
+    /* font-family: 'Space Mono', monospace; */
+    font-size: 1.9rem;
+    /* color: var(--vn-blue); */
     text-align: center;
     line-height: 3rem;
 }
 
 .noteit__logo {
-    filter: invert(90%);
-    fill: var(--vn-blue);
+    /* filter: invert(90%); */
+    /* fill: var(--vn-blue); */
+    filter: invert(40%) sepia(97%) saturate(2275%) hue-rotate(210deg) brightness(98%) contrast(101%);
 }
 
 .noteit__cred {
@@ -55,6 +57,7 @@ h5 {
 :root {
     --vn-blue: #4377fb;
     --bs-blue: #4377fb;
+    --bs-primary: #27923d;
     background-color: var(--bs-dark);
     /* --bs-dark-rgb: #4377fb; */
     /* --bs-body-font-family: 'Space Mono', monospace; */
@@ -84,9 +87,29 @@ root {
 }
 
 
-
-
-
 .noteit__header-title {
     text-align: end;
+}
+
+.noteit__btn-new {
+    /* background-color: rgba(220, 0, 0, 1); */
+    /* background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0)); */
+    
+    --bs-btn-bg: var(--bd-violet-bg);
+    
+    --bs-blue: #4377fb;
+    --bs-primary: #27923d;
+    /* background-color: var(--bs-dark); */
+
+
+}
+
+.btn-primary {
+    background-color: var(--vn-blue) !important;
+    border-color: var(--vn-blue) !important;
+}
+
+.btn-primary:hover, .btn-primary:active{
+    background-color:  #315fd3 !important;
+    border-color: #315fd3 !important;
 }

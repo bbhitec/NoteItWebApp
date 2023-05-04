@@ -8,12 +8,12 @@ import './Card.css'
 function Card({ title, content, onUpdate, onDelete }) {
     return (
         // [wip] minimum width, proper responsive layouts
-        <div className="card noteit__card bg-dark text-light m-2">
+        <div className="card noteit__card bg-dark text-light m-1">
             {/* // xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-6"> */}
             {/* <img src="" class="card-img-top" alt="..." /> */}
-            <div className="card-body noteit__card-body bg-dark text-light" >
-                <h5 className="card-title text-muted">{title}</h5>
-                <p className="card-text">{content}</p>
+            <div className="card-body noteit__card-body bg-dark text-light p-2" >
+                <h5 className="card-title text-secondary">{title}</h5>
+                <p className="card-text lh-sm ">{content}</p>
                 {/* [wip] show on */}
                 <div className='d-flex'>
                     <div className="me-2 text-secondary" onClick={onUpdate} data-tooltip-content="Update Note" data-tooltip-id="action-tooltip">

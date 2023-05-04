@@ -3,3 +3,10 @@
 .noteit__card-body {
     font-family:'Space Mono', monospace;
 }
+
+.noteit__card-body {
+    font-size: 0.8rem;
+}
+.noteit__card-body h5 {
+    font-size: 0.8rem;
+}

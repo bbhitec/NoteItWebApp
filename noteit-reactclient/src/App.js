@@ -20,7 +20,7 @@ function App() {
   const [noteIdBeingUpdated, setNoteIdBeingUpdated] = useState(null);
 
   // [demo] use this hook to load the motes on mount once (the empty array is for the items that with cause re-render)
-  useEffect((getNotes),[])
+  useEffect((getNotes), [])
 
 
   // implementing the get function
@@ -63,44 +63,25 @@ function App() {
   return (
     <>
       {/* HEADER CONTAINER */}
-      <div className='noteit__header sticky-top bg-dark text-light'>
-        <div className="d-flex my-4 px-1 align-items-center noteit__cred">
-          <img src={logo} className="mx-3 noteit__logo" alt="NoteIt Logo" width="50" />
-          <h1 className='noteit__title my-0 align-items-center' >NoteIt</h1>
-          {/* <h4 className=''>ASP.NET Core app</h4> */}
-        </div>
-        <div className='noteit__menu d-flex align-self-center'>
-          <button onClick={() => setShowingCreateNewNoteForm(true)} className='btn btn-primary btn-sm me-2' data-tooltip-content="New Note" data-tooltip-id="menu-tooltip">
-            <BiPlus size='2rem' />
-          </button>
-          <button onClick={getNotes} className='btn btn-secondary btn-sm me-1' aria-label='Menu' data-tooltip-content="Reload Notes" data-tooltip-id="menu-tooltip">
-            <BiRefresh size='2rem' />
-          </button>
-          {/* [wip] user area, tutorial and tech stack demo area */}
-          <Tooltip id="menu-tooltip" place="bottom" variant="info" />
-        </div>
+      <div className='w-100 bg-dark text-light py-2 py-sm-5'>
+        <div className='noteit__header sticky-top col-10 px-0 mx-auto '>
+          <div className="d-flex my-4 px-0 align-items-center noteit__cred">
+            <img src={logo} className="mx-3 noteit__logo" alt="NoteIt Logo" width="50" />
+            <h1 className='noteit__title my-0 align-items-center' >NoteIt</h1>
+          </div>
+          <div className='noteit__menu d-flex align-self-center'>
+            <button onClick={() => setShowingCreateNewNoteForm(true)} className='btn btn-secondary btn-sm me-2 noteit__btn-new' data-tooltip-content="New Note" data-tooltip-id="menu-tooltip">
+              <BiPlus size='2rem' />
+            </button>
+            <button onClick={getNotes} className='btn btn-outline-secondary btn-sm me-1' aria-label='Menu' data-tooltip-content="Reload Notes" data-tooltip-id="menu-tooltip">
+              <BiRefresh size='2rem' />
+            </button>
+            {/* [wip] user area, tutorial and tech stack demo area */}
+            <Tooltip id="menu-tooltip" place="bottom" variant="info" />
+          </div>
 
-        {/* [wip] fix dropdown? add search? */}
-        {/* <ul className='app-nav'>
-          <li className='app-search'></li>
-          <li className='dropdown'>
-            <a className='app-nav__item' href="#" data-toggle='dropdown' aria-label='Menu'>
-              <BsPersonFill size='3rem' />
-            </a>
-            <ul className='dropdown-menu settings-menu dropdown-menu-right' data-bs-theme="dark">
-              <li><a className='dropdown-item' href=''>Item</a></li>
-              <li><a className='dropdown-item' href=''>Item</a></li>
-              <li><a className='dropdown-item' href=''>Item</a></li>
-              <li><a className='dropdown-item' href=''>Item</a></li>
-            </ul>
-          </li>
-        </ul> */}
-        {/* <ul class="dropdown-menu position-static d-grid gap-1 p-2 rounded-3 mx-0 shadow w-220px" data-bs-theme="light">
-          <li><a class="dropdown-item rounded-2 active" href="#">Action</a></li>
-          <li><a class="dropdown-item rounded-2" href="#">Another action</a></li>
-          <li><a class="dropdown-item rounded-2" href="#">Something else here</a></li>
-          <li><a class="dropdown-item rounded-2" href="#">Separated link</a></li>
-        </ul> */}
+          {/* [wip] fix dropdown? add search? */}
+        </div>
 
       </div>
 

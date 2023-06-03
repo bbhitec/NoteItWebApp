@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import CardsGrid from './components/CardsGrid';
 import './App.css'
 import GhostGrid from './components/GhostGrid';
+import Notification from './components/Notification';
 
 
 
@@ -20,6 +21,10 @@ function App() {
   const [showingCreateNewNoteForm, setShowingCreateNewNoteForm] = useState(false);  // new note form is hidden by default
   const [noteIdBeingUpdated, setNoteIdBeingUpdated] = useState(null);
   const [notesAlert, setNotesAlert] = useState(false);
+  const [notesNotification, setNotesNotification] = useState(false);
+  const [notification, setNotification] = useState("");
+  const [notesLoading, setNotesLoading] = useState(false);
+  const [notesCleared, setNotesCleared] = useState(false);
 
   // [demo] use this hook to load the motes on mount once (the empty array is for the items that with cause re-render)
   useEffect((getNotes), [])
@@ -29,8 +34,8 @@ function App() {
   function getNotes() {
     const url = Constants.API_URL_GET_ALL_NOTES;
 
-    setNotesAlert(false); // refresh alert status
-
+    setNotesAlert(false);   // refresh alert status
+    setNotesCleared(false);  // indicate loading status
 
     // [demo] fetch with a GET directive and save to a .json
     // [wiki] this request must be authorized with a CORS policy server-size
@@ -93,45 +98,29 @@ function App() {
 
 
       {/* MAIN WINDOW CONTAINER */}
-      {/* <div className='container-fluid vh-100 row bg-dark text-light'> */}
-      {/* <div className='col-xl-8 mx-auto vh-100 bg-dark text-light' id='main-container'> */}
       <div className='bg-dark text-light' id='main-container'>
 
         {/* [demo] calling react component function, if has items, or no other form is active*/}
         {/* {(notes.length > 0 && showingCreateNewNoteForm === false && noteIdBeingUpdated === null) && renderItemsTable()} */}
 
-        {notesAlert ? renderAlert() : ""}
+        {notesAlert ? <Alert> Error fetching notes from the server. Please check your connection and try again! </Alert> : ""}
+        {notesNotification ? <Notification onClose={() => setNotesNotification(false)}> {notification} </Notification> : ""}
 
 
         {(showingCreateNewNoteForm === false && noteIdBeingUpdated === null && notesAlert === false) &&
-          ((notes.length > 0) ? renderItemsCards() : <GhostGrid /> // show placeholders when no cards are loaded
+          ((notes.length > 0) ? renderItemsCards() : (notesCleared === false && <GhostGrid />) // show placeholders when no cards are loaded
           )}
 
         {/* render create/update note forms in this same port */}
         {showingCreateNewNoteForm && <NoteCreateForm onNoteCreated={onNoteCreated} />}
         {noteIdBeingUpdated !== null && <NoteUpdateForm note={noteIdBeingUpdated} onNoteUpdated={onNoteUpdated} />}
 
-        {/* </div> */}
-        {/* </div> */}
       </div>
 
       {/* FOOTER CONTAINER */}
       <Footer />
     </>
   );
-
-  function renderAlert() {
-    return (
-      <Alert>
-        <svg width={20} xmlns="http://www.w3.org/2000/svg" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-3" viewBox="0 0 16 16" role="img" aria-label="Warning:">
-          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-        </svg>
-        <div>
-          Error fetching notes from the server. Check connection and try again!
-        </div>
-      </Alert>
-    )
-  }
 
 
   // map notes as cards
@@ -141,8 +130,12 @@ function App() {
         <CardsGrid items={notes} setNoteIdBeingUpdated={setNoteIdBeingUpdated} deleteNote={deleteNote} />
 
         <div className="d-flex row py-3">
-          <div onClick={() => setNotes([])} className='btn btn-secondary btn-sm col-2 my-2 mx-auto'>
-            <BiXCircle size='2rem' /> Clear Notes
+          <div onClick={() => {
+            setNotes([])
+            setNotesCleared(true)
+          }
+          } className='btn btn-secondary btn-sm col-3 my-3 py-3 mx-auto'>
+            <BiXCircle size='1.5rem' /> Clear Notes
           </div>
         </div>
       </>
@@ -188,6 +181,7 @@ function App() {
     );
   }
 
+
   // handle the result from new note creation
   function onNoteCreated(createdNote) {
     setShowingCreateNewNoteForm(false); // hide form once new note is created
@@ -197,6 +191,9 @@ function App() {
     }
 
     alert(`The new note was successfully created! It will show up in the table under "${createdNote.title}"!`);
+    setNotesNotification(false);
+    setNotification(`The new note was successfully created under "${createdNote.title}"!`)
+    setNotesNotification(true);
 
     getNotes();
   }
@@ -227,22 +224,26 @@ function App() {
 
     setNotes(notesCopy);  // refresh notes list
 
-    alert(`Note "${updatedNote.title}" was successfully updated!`);
-
+    setNotesNotification(true);
+    setNotification(`Note "${updatedNote.title}" was successfully updated!`)
   }
 
   // note deletion function
   function onNoteDeleted(deletedNoteId) {
 
     let notesCopy = [...notes]; // copy array
+    let titleCp = null;   // preserve note title for display prior deleting
 
     // find the corresponding note and to delete
     const index = notesCopy.findIndex((notesCopyNote, currentIndex) => {
       if (notesCopyNote.noteId === deletedNoteId) {
+        titleCp = notesCopyNote.title;
         return true;
       }
       return false;
     });
+
+
 
     // update if found
     if (index !== -1) {
@@ -251,7 +252,8 @@ function App() {
 
     setNotes(notesCopy);  // refresh notes list
 
-    alert(`Note "${deletedNoteId.title}" successfully deleted!`);
+    setNotesNotification(true);
+    setNotification(`Note "${titleCp}" successfully deleted!`)
 
   }
 

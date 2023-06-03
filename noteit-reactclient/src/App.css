@@ -61,7 +61,7 @@ h5 {
     background-color: var(--bs-dark);
     /* --bs-dark-rgb: #4377fb; */
     /* --bs-body-font-family: 'Space Mono', monospace; */
-    
+
     /* --bs-secondary: #4377fb; */
     --bs-body-font-size: 0.8rem;
 }
@@ -83,7 +83,7 @@ root {
 .noteit__card {
     /* font-family:'Space Mono', monospace; */
     font-family:'Alfa Slab One', cursive;
-    
+
 }
 
 
@@ -94,9 +94,9 @@ root {
 .noteit__btn-new {
     /* background-color: rgba(220, 0, 0, 1); */
     /* background-image: linear-gradient(to top left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0)); */
-    
+
     --bs-btn-bg: var(--bd-violet-bg);
-    
+
     --bs-blue: #4377fb;
     --bs-primary: #27923d;
     /* background-color: var(--bs-dark); */

@@ -60,17 +60,17 @@ export default function NoteCreateForm(props) {
 
 
     return (
-        <form className='noteit__form w-100 px-5 pb-5'>
+        <form className='noteit__form col-10 mx-auto'>
             <h1 className='pt-5'>Create New Note</h1>
 
             <div className='mt-5'>
-                <label className='h3 form-label'>Note Title</label>
-                <input value={formData.title} name='title' type='text' className='form-control' onChange={handleChange} />
+                <label className='form-label' for='formNewTitle'>Note Title</label>
+                <input value={formData.title} name='title' type='text' className='form-control bg-dark text-light' id='formNewTitle' onChange={handleChange} />
             </div>
 
             <div className='mt-4'>
-                <label className='h3 form-label'>Note Content</label>
-                <input value={formData.content} name='content' type='text' className='form-control' onChange={handleChange} />
+                <label className='form-label' for='formNewContent'>Note Content</label>
+                <textarea value={formData.content} name='content' type='text' rows='4' className="form-control bg-dark text-light" id='formNewContent' onChange={handleChange} />
             </div>
 
             <button onClick={handleSubmit} className='btn btn-success btn-lg w-100 mt-5'>Submit</button>
